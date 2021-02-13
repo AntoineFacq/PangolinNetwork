@@ -18,6 +18,8 @@ import { AuthGuard } from './guards/auth.guard';
 import {JWT_OPTIONS, JwtHelperService, JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
 import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { FriendComponent } from './friend/friend.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes =  [
   {path:'', component: HomeComponent},
@@ -56,7 +58,8 @@ export class AuthInterceptor implements HttpInterceptor {
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    FriendComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +74,8 @@ export class AuthInterceptor implements HttpInterceptor {
         allowedDomains: ['localhost:3000'],
         disallowedRoutes: ['http://localhost:3000/pangolins/login']
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
 

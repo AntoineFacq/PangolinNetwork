@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.authService.getProfile().subscribe(profile => {
-        console.log(profile);
       this.pangolin = profile.json().pangolin;
       this.friends = profile.json().friends;
       this.otherPangos = profile.json().otherPangos;

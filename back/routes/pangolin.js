@@ -7,7 +7,6 @@ const Pangolin = require('../models/pangolin');
 
 // Register a pangolin
 router.post('/register', (req, res, next) => {
-  console.log("Register")
   let newUser = new Pangolin({
     login: req.body.login,
     password: req.body.password,

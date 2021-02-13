@@ -23,10 +23,8 @@ export class FriendComponent implements OnInit {
 
 
   addFriend(id: number) {
-    console.log("Add");
     this.authService.addFriend(id).subscribe(
       (data) => {
-        console.log(id);
         var d = data.json();
         this.profile.friends = d.friends;
         this.profile.otherPangos = d.otherPangos;
