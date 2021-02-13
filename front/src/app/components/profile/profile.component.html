@@ -1,56 +1,39 @@
 <div *ngIf="pangolin">
   <h2 class="page-header">Votre profil ({{pangolin.login}})</h2>
-  <form (submit)="onModifSubmit()" >
-  <ul class="list-group">
+  <form (submit)="onModifSubmit()">
+    <ul class="list-group">
 
-    <li class="list-group-item">Age : <label>
-      <input type="text" [(ngModel)]="pangolin.age" name="age"/>
-    </label></li>
-    <li class="list-group-item">Nourriture : <label>
-      <input type="text" [(ngModel)]="pangolin.food" name="food"/>
-    </label></li>
-    <li class="list-group-item">Famille : <label>
-      <input type="text" [(ngModel)]="pangolin.family" name="family" />
-    </label></li>
-    <li class="list-group-item">Race : <label>
-      <input type="text" [(ngModel)]="pangolin.race" name="race"/>
-    </label></li>
+      <li class="list-group-item">Age : <label>
+        <input type="text" [(ngModel)]="pangolin.age" name="age"/>
+      </label></li>
+      <li class="list-group-item">Nourriture : <label>
+        <input type="text" [(ngModel)]="pangolin.food" name="food"/>
+      </label></li>
+      <li class="list-group-item">Famille : <label>
+        <input type="text" [(ngModel)]="pangolin.family" name="family"/>
+      </label></li>
+      <li class="list-group-item">Race : <label>
+        <input type="text" [(ngModel)]="pangolin.race" name="race"/>
+      </label></li>
       <input type="submit" class="btn btn-primary" value="Mettre à jour">
 
-
-
-
-    <ng-template #elseBlockA><br/><b>Pas d'amis pangos :-( Pas de panique, ajoutez en en dessous !</b></ng-template>
-  </ul>
+    </ul>
   </form>
 
-  <li class="list-group-item mt-5">Friends :
-    <div *ngIf="friends && friends.length > 0; else elseBlockA">
-      <div *ngFor="let pang of friends" class="card col-6">
-
-        <h2 class="page-header">{{pang.login}}</h2>
-        <ul class="list-group">
-          <li class="list-group-item">Age : {{pang.age}}</li>
-          <li class="list-group-item">Famille : {{pang.family}}</li>
-        </ul>
-        <button class="btn btn-danger" (click)="removeFriend(pang._id)">Remove</button>
-      </div>
+  <h3 class="page-header text-bold">Friends :</h3>
+  <div class="container-fluid mb-5">
+    <div class="row my-5" *ngIf="friends.length > 0; else elseBlockA">
+      <app-friend class="col-6" *ngFor="let pang of friends" [pangolin]="pang" [isFriend]="true"></app-friend>
     </div>
-  </li>
+    <ng-template #elseBlockA><b>Pas d'amis pangos :-( Pas de panique, ajoutez en en dessous !</b></ng-template>
+  </div>
 
-  <li class="list-group-item mt-5">D'autres Pangos sur le réseau :
-    <div *ngIf="otherPangos; else elseBlockB">
-      <div *ngFor="let pang of otherPangos" class="card col-6">
-        <h2 class="page-header">{{pang.login}}</h2>
-        <ul class="list-group">
-          <li class="list-group-item">Age : {{pang.age}}</li>
-          <li class="list-group-item">Nourriture : {{pang.food}}</li>
-        </ul>
-        <button class="btn btn-success" (click)="addFriend(pang._id)">Add</button>
 
+    <h3 class="page-header text-bold" >D'autres Pangos' sur le réseau :</h3>
+    <div class="container-fluid">
+      <div class="row" *ngIf="otherPangos.length > 0; else elseBlockB">
+        <app-friend class="col-6" *ngFor="let pang of otherPangos" [pangolin]="pang" [isFriend]="false"></app-friend>
       </div>
     </div>
     <ng-template #elseBlockB>Aucun pangos sur le réseau ! <a href="/register">Créer un pango</a></ng-template>
-
-  </li>
 </div>

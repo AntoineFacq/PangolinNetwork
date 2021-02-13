@@ -26,28 +26,10 @@ export class ProfileComponent implements OnInit {
       this.otherPangos = profile.json().otherPangos;
     },
      err => {
-       console.log(err);
+       this.router.navigate(['/login']);
+
        return false;
      });
-  }
-
-  addFriend(id: number) {
-    console.log("Add");
-    this.authService.addFriend(id).subscribe(
-      (data) => {
-        var d = data.json();
-        this.friends = d.friends;
-        this.otherPangos = d.otherPangos;
-      });
-  }
-
-  removeFriend(id: number) {
-    this.authService.removeFriend(id).subscribe(
-      (data) => {
-        var d = data.json();
-        this.friends = d.friends;
-        this.otherPangos = d.otherPangos;
-      });
   }
 
   onModifSubmit() {
