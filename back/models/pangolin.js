@@ -39,16 +39,18 @@ const Pangolin = module.exports = mongoose.model('Pangolin', PangolinSchema);
 module.exports.addFriend = function (id1, id2, callback) {
   Pangolin.findById(id1, (err1, user) =>{
     Pangolin.findById(id2, (err2, user2) => {
-      user.friends.push(user2);
-      user.save(callback);
-    })
+      if(user.friends.indexOf(user2._id) === -1) {
+        user.friends.push(user2);
+        user.save(callback);
+      }
+      })
   });
 }
 
 module.exports.removeFriend = function (id1, id2, callback) {
   Pangolin.findById(id1, (err1, user) =>{
     Pangolin.findById(id2, (err2, user2) => {
-      user.friends.splice(user.friends.indexOf(user2._id));
+      user.friends.splice(user.friends.indexOf(user2._id), 1);
       user.save(callback);
     })
 

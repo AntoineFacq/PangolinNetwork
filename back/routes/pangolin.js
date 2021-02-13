@@ -65,18 +65,9 @@ router.post('/addFriend',
     Pangolin.addFriend(req.user._id, req.body.id, (err, pangolin) => {
       Pangolin.getAllPangolins(req.user._id, (err, pangos) => {
         Pangolin.getFriends(req.user._id, (err, friends) => {
-          var keys = [];
-          friends.forEach((k, v) => keys.push(k._id))
-          console.log(keys)
-
-          function myCallBack(el){
-            return keys.indexOf(el) < 0;
-          }
-
-
           res.json({
               pangolin: req.user, friends: friends,
-              otherPangos: pangos.filter(myCallBack)
+              otherPangos: pangos
             }
           )
         });
@@ -91,18 +82,9 @@ router.post('/removeFriend',
     Pangolin.removeFriend(req.user._id, req.body.id, (err, pangolin) => {
       Pangolin.getAllPangolins(req.user._id, (err, pangos) => {
         Pangolin.getFriends(req.user._id, (err, friends) => {
-          var keys = [];
-          friends.forEach((k, v) => keys.push(k._id))
-          console.log(keys)
-
-          function myCallBack(el){
-            return keys.indexOf(el) < 0;
-          }
-
-
           res.json({
               pangolin: req.user, friends: friends,
-              otherPangos: pangos.filter(myCallBack)
+              otherPangos: pangos
             }
           )
         });
@@ -115,18 +97,9 @@ router.post('/removeFriend',
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res, next) => {
   Pangolin.getAllPangolins(req.user._id, (err, pangos) => {
     Pangolin.getFriends(req.user._id, (err, friends) => {
-      var keys = [];
-      friends.forEach((k, v) => keys.push(k._id))
-      console.log(keys)
-
-      function myCallBack(el){
-        return keys.indexOf(el) < 0;
-      }
-
-
       res.json({
           pangolin: req.user, friends: friends,
-          otherPangos: pangos.filter(myCallBack)
+          otherPangos: pangos
         }
       )
     });
