@@ -5,6 +5,41 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const Pangolin = require('../models/pangolin');
 
+// Register and add a pangolin as friend
+router.post('/register-new-friend', passport.authenticate('jwt', {session: false}), (req, res, next) => {
+  let newUser = new Pangolin({
+    login: req.body.login,
+    password: req.body.password,
+    age: req.body.age,
+    food: req.body.food,
+    family: req.body.family,
+    race: req.body.race,
+
+  });
+
+  Pangolin.addPangolin(newUser, (err, pangolin) => {
+    if (err) {
+      res.json({success: false, msg: "Erreur à l'enregistrement"});
+    } else {
+      console.log(req.body)
+      Pangolin.addFriend(req.user._id, pangolin.id, (err, pangolin) => {
+        Pangolin.getAllPangolins(req.user._id, (err, pangos) => {
+          Pangolin.getFriends(req.user._id, (err, friends) => {
+            res.json({
+                pangolin: req.user, friends: friends,
+                otherPangos: pangos,
+                success: true,
+                msg: 'Pangolin enregistré et ajouté en ami !'
+              }
+            )
+          });
+        })
+      })
+    }
+  });
+});
+
+
 // Register a pangolin
 router.post('/register', (req, res, next) => {
   let newUser = new Pangolin({

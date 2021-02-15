@@ -21,6 +21,13 @@ export class AuthService {
     return this.http.post(this.server + 'pangolins/register', user, {headers: headers});
   }
 
+  registerNewFriend(user) {
+    let headers = new Headers();
+    headers.append('Authorization', this.authToken);
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.server + 'pangolins/register-new-friend', user, {headers: headers});
+  }
+
   login(user) {
     let headers = new Headers();
     headers.append('Authorization', this.authToken);

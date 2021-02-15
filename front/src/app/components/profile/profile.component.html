@@ -15,14 +15,14 @@
       <li class="list-group-item">Race : <label>
         <input type="text" [(ngModel)]="pangolin.race" name="race"/>
       </label></li>
-      <input type="submit" class="btn btn-primary" value="Mettre à jour">
+      <input type="submit" class="btn btn-primary rounded-bottom" value="Mettre à jour">
 
     </ul>
   </form>
 
-  <h3 class="page-header text-bold">Friends :</h3>
+  <h3 class="page-header text-bold mt-4">Friends :</h3>
   <div class="container-fluid mb-5">
-    <div class="row my-5" *ngIf="friends.length > 0; else elseBlockA">
+    <div class="row my-2" *ngIf="friends.length > 0; else elseBlockA">
       <app-friend class="col-6" *ngFor="let pang of friends" [pangolin]="pang" [isFriend]="true"></app-friend>
     </div>
     <ng-template #elseBlockA><b>Pas d'amis pangos :-( Pas de panique, ajoutez en en dessous !</b></ng-template>
@@ -32,7 +32,8 @@
     <h3 class="page-header text-bold" >D'autres Pangos' sur le réseau :</h3>
     <div class="container-fluid">
       <div class="row" *ngIf="otherPangos.length > 0; else elseBlockB">
-        <app-friend class="col-6" *ngFor="let pang of otherPangos" [pangolin]="pang" [isFriend]="false"></app-friend>
+        <app-friend class="col-6 my-2" *ngFor="let pang of otherPangos" [pangolin]="pang" [isFriend]="false"></app-friend>
+        <app-new-friend class="col-6 my-2"></app-new-friend>
       </div>
     </div>
     <ng-template #elseBlockB>Aucun pangos sur le réseau ! <a href="/register">Créer un pango</a></ng-template>

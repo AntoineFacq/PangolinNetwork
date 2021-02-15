@@ -20,6 +20,7 @@ import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest}
 import {Observable} from 'rxjs';
 import { FriendComponent } from './friend/friend.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewFriendComponent } from './new-friend/new-friend.component';
 
 const appRoutes: Routes =  [
   {path:'', component: HomeComponent},
@@ -59,7 +60,8 @@ export class AuthInterceptor implements HttpInterceptor {
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    FriendComponent
+    FriendComponent,
+    NewFriendComponent
   ],
   imports: [
     BrowserModule,

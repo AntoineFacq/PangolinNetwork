@@ -1,0 +1,34 @@
+<div class="card p-2">
+  <h2 class="page-header m-0">Créer un nouvel ami</h2>
+  <form (submit)="registerNewFriend()">
+    <div class="form-group">
+      <label for="login">Login</label>
+      <input type="text" [(ngModel)]="login" name="login" class="form-control" id="login"
+             placeholder="Votre login (visible par tous les pangolins)">
+    </div>
+    <div class="form-group">
+      <label for="age">Age</label>
+      <input type="text" [(ngModel)]="age" name="age" class="form-control" id="age"
+             placeholder="Votre age (en base Pangolin)">
+    </div>
+    <div class="form-group">
+      <label for="age">Nouriture</label>
+      <input type="text" [(ngModel)]="food" name="food" class="form-control" id="food" placeholder="Que mangez-vous ?">
+    </div>
+    <div class="form-group">
+      <label for="age">Famille</label>
+      <input type="text" [(ngModel)]="family" name="family" class="form-control" id="family"
+             placeholder="Votre famille">
+    </div>
+    <div class="form-group">
+      <label for="age">Race</label>
+      <input type="text" [(ngModel)]="race" name="race" class="form-control" id="race" placeholder="Votre race">
+    </div>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input type="password" [(ngModel)]="password" name="password" class="form-control" id="password"
+             placeholder=" Enter Password">
+    </div>
+    <input type="submit" class="btn btn-primary" value="Créer">
+  </form>
+</div>
